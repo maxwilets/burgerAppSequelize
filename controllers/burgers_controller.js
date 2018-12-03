@@ -5,7 +5,7 @@ var router = express.Router()
 //GET Route
 router.get("/", (req, res) => {
     //shows all the burgers
-    burger.allBurgers((data) => {
+    Burger.allBurgers((data) => {
         var hbsObject = {
             burgers: data
         };

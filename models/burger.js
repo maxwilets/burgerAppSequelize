@@ -1,6 +1,6 @@
-var orm = require('../config/orm.js')
 
-var burgerModel = {
+module.exports = function(sequelize, DataTypes) {
+var Burger = {
     allBurgers: (cb) =>{
         orm.selectAll('burgers', (res)=>{
             cb(res)
@@ -13,5 +13,5 @@ var burgerModel = {
         orm.updateOne('burgers', condition, cb)
     }
 }
-
-module.exports = burgerModel
+return Burger
+}
