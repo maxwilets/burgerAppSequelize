@@ -1,17 +1,26 @@
 
-module.exports = function(sequelize, DataTypes) {
-var Burger = {
-    allBurgers: (cb) =>{
-        orm.selectAll('burgers', (res)=>{
-            cb(res)
-        }) 
+module.exports = (sequelize, DataTypes)=> {
+var Burger = sequelize.define("burgers",{
+    burger_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
     },
-    addBurger: (name, cb) =>{
-        orm.insertOne('burgers', ['burger_name', 'devoured'], [name, 0], cb)
-    },
-    updateBurger:(condition, cb) =>{
-        orm.updateOne('burgers', condition, cb)
+    devoured: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
-}
+});
+
+Burger.associate = (models)=>{
+
+    Burger.belongsTo(models.customer, {
+        foreignKey: {
+            allowNull: false
+        }
+    })
+} 
 return Burger
 }
