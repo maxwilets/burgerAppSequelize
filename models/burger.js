@@ -14,11 +14,12 @@ var Burger = sequelize.define("burgers",{
     }
 });
 
-Burger.associate = (models)=>{
+Burger.associate = models=>{
 
-    Burger.belongsTo(models.customer, {
+    Burger.belongsTo(models.Customer, {
         foreignKey: {
-            allowNull: false
+            allowNull: true
+            
         }
     })
 } 
